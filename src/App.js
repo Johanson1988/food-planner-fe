@@ -1,15 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import AddIngredient from './components/forms/AddIngredient';
+
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import  Navbar  from './components/layout/Navbar';
+import Dashboard from './components/dashboard/Dashboard';
+import IngredientDetails from './components/app/ingredient/IngredientDetails';
+import SignIn from './components/auth/Signin';
+import SignUp from './components/auth/Signup';
+import AddIngredient from './components/app/ingredient/AddIngredient';
 
 function App() {
   return (
-    <div className="App">
-     
-     <h1>Insertar Ingrediente</h1>
-    <AddIngredient />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component= { Dashboard } />
+          <Route path="/ingredient/:id" component={IngredientDetails} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/add-ingredient" component={AddIngredient} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
