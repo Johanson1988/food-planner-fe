@@ -1,8 +1,4 @@
-import axios from 'axios';
-
-const initState = () => axios.get('http://localhost:5000/ingredient')
-    .then((response) => response)
-    .catch(error => error);
+const initState = [{ingredient:1}];
 
 const ingredientReducer = (state = initState, action) => {
     switch (action.type) {
@@ -11,6 +7,12 @@ const ingredientReducer = (state = initState, action) => {
             return state;
         case 'ADD_INGREDIENT_ERROR':
             console.log('create ingredient error', action.error);
+            return state;
+        case 'GET_INGREDIENTS':
+            console.log('Got ingredients list: ', action.ingredients.data);
+            return [...state, action.ingredients.data];
+        case 'GET_INGREDIENTS_ERROR':
+            console.log('Error getting ingredients list: ', action.error);
             return state;
         default:
             return state;

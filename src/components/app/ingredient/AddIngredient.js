@@ -98,6 +98,7 @@ class AddIngredient extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
+    console.log('llamada a mapDispacth en add ingredient');
     return {
         addIngredient: ingredient => dispatch(addIngredient(ingredient))
     }
