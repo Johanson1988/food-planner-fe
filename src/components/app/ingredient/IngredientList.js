@@ -8,7 +8,7 @@ import { addIngredient } from './../../../store/actions/foodActions';
 class IngredientList extends Component {
     state = {
         ingredientFilter: '',
-        selectedIngredients: new Map()
+        selectedIngredients: []
     };
 
     handleChange = e => {
@@ -20,8 +20,9 @@ class IngredientList extends Component {
         console.log(e.target)
         console.log('ingredientId: ',ingredientId);
         const isChecked = e.target.checked;
-        this.setState(prevState => ({ selectedIngredients: prevState.selectedIngredients.set(ingredientId, isChecked)}), () => console.log(this.state));
-
+        isChecked ?
+            this.setState( { selectedIngredients: [...this.state.selectedIngredients, ingredientId] }, () => console.log(this.state)) :
+            this.setState( { selectedIngredients: [...this.state.selectedIngredients.filter(ingredient => ingredient !== ingredientId)] } )
     }
 
     render () { 
