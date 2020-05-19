@@ -12,14 +12,14 @@ class Dashboard extends Component {
     }
 
     render () {
-        const { ingredients } = this.props;
+        //const { ingredients } = this.props;
         console.log('Dashboard Props', this.props);
         console.log('Dashboard State:', this.state);
         return (
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m6">
-                        <IngredientList ingredients={ingredients} />
+                        <IngredientList />
                     </div>
                     <div className="col s12 m5 offset-m1">
                         <Notifications />

@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import IngredientSummary from './IngredientSummary';
+import { connect } from 'react-redux';
+import { getIngredients } from './../../../store/actions/ingredientActions';
 
 
 class IngredientList extends Component {
-    state = {ingredientFilter: ''};
-    handleChange = e => this.setState({[e.target.name]:e.target.value});
-    render (){
+    state = { ingredientFilter: '' };
+
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value } , () => this.props.getIngredients(`name=${this.state.ingredientFilter}`));
+        
+    };
+
+    render () { 
         const { ingredients } = this.props;
         return (
             <div className="ingredient-list section">
@@ -14,11 +21,24 @@ class IngredientList extends Component {
                     <input type='text' name='ingredientFilter' onChange={this.handleChange} />                        
                 </div>
                 {
-                    ingredients && ingredients.filter(ingredient => ingredient.name.includes(this.state)).map(ingredient => <IngredientSummary ingredient={ingredient} key={ingredient._id} />)
+                    ingredients && ingredients.map(ingredient => <IngredientSummary ingredient={ingredient} key={ingredient._id} />)
                 }
             </div>
         )
     }
 }
 
-export default IngredientList;
+const mapStateToProps = state => {
+    console.log('state in maptstatetoprops', state)
+    return {
+        ingredients: state.ingredient
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getIngredients: (query) => dispatch(getIngredients(query))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientList);
