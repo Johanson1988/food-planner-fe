@@ -2,16 +2,27 @@ import React, { Component } from 'react';
 import IngredientSummary from './IngredientSummary';
 import { connect } from 'react-redux';
 import { getIngredients } from './../../../store/actions/ingredientActions';
-import { Link } from 'react-router-dom';
+import { addIngredient } from './../../../store/actions/foodActions';
 
 
 class IngredientList extends Component {
-    state = { ingredientFilter: '' };
+    state = {
+        ingredientFilter: '',
+        selectedIngredients: new Map()
+    };
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value } , () => this.props.getIngredients(`name=${this.state.ingredientFilter}`));
-        
     };
+
+    handleCheckbox = e => {
+        const ingredientId = e.target.value;
+        console.log(e.target)
+        console.log('ingredientId: ',ingredientId);
+        const isChecked = e.target.checked;
+        this.setState(prevState => ({ selectedIngredients: prevState.selectedIngredients.set(ingredientId, isChecked)}), () => console.log(this.state));
+
+    }
 
     render () { 
         const { ingredients } = this.props;
@@ -22,7 +33,7 @@ class IngredientList extends Component {
                     <input type='text' name='ingredientFilter' onChange={this.handleChange} />                        
                 </div>
                 {
-                    ingredients && ingredients.map(ingredient => <Link to={`/ingredient/${ingredient._id}`} ><IngredientSummary ingredient={ingredient} key={ingredient._id} /></Link>)
+                    ingredients && ingredients.map(ingredient => <IngredientSummary ingredient={ingredient} key={ingredient._id} handleCheckbox={this.handleCheckbox} />)
                 }
             </div>
         )
@@ -30,7 +41,6 @@ class IngredientList extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('state in maptstatetoprops', state)
     return {
         ingredients: state.ingredient
     }
@@ -38,7 +48,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getIngredients: (query) => dispatch(getIngredients(query))
+        getIngredients: (query) => dispatch(getIngredients(query)),
+        addIngredient: (_id) => dispatch(addIngredient(_id))
     }
 }
 
