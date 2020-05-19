@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IngredientSummary from './IngredientSummary';
 import { connect } from 'react-redux';
 import { getIngredients } from './../../../store/actions/ingredientActions';
+import { Link } from 'react-router-dom';
 
 
 class IngredientList extends Component {
@@ -21,7 +22,7 @@ class IngredientList extends Component {
                     <input type='text' name='ingredientFilter' onChange={this.handleChange} />                        
                 </div>
                 {
-                    ingredients && ingredients.map(ingredient => <IngredientSummary ingredient={ingredient} key={ingredient._id} />)
+                    ingredients && ingredients.map(ingredient => <Link to={`/ingredient/${ingredient._id}`} ><IngredientSummary ingredient={ingredient} key={ingredient._id} /></Link>)
                 }
             </div>
         )

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addIngredient } from './../../../store/actions/ingredientActions';
 
@@ -25,7 +25,7 @@ class AddIngredient extends Component {
     }
 
     render() {
-        return(
+        return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
                     <h5 className="grey-text text-darken-3">Add New Ingredient</h5>
