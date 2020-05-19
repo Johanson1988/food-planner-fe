@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import IngredientSummary from './IngredientSummary';
 
-const IngredientList = ({ingredients}) => {
-    return (
-        <div className="ingredient-list section">
-            {
-                ingredients && ingredients.map(ingredient => <IngredientSummary ingredient={ingredient} key={ingredient._id} />)
-            }
-        </div>
-    )
+
+class IngredientList extends Component {
+    state = {ingredientFilter: ''};
+    handleChange = e => this.setState({[e.target.name]:e.target.value});
+    render (){
+        const { ingredients } = this.props;
+        return (
+            <div className="ingredient-list section">
+                <div className="input-field">
+                    <label htmlFor='ingredientFilter'>Search ingredient</label>
+                    <input type='text' name='ingredientFilter' onChange={this.handleChange} />                        
+                </div>
+                {
+                    ingredients && ingredients.filter(ingredient => ingredient.name.includes(this.state)).map(ingredient => <IngredientSummary ingredient={ingredient} key={ingredient._id} />)
+                }
+            </div>
+        )
+    }
 }
 
 export default IngredientList;

@@ -1,4 +1,4 @@
-const initState = [{ingredient:1}];
+const initState = [];
 
 const ingredientReducer = (state = initState, action) => {
     switch (action.type) {
@@ -10,7 +10,7 @@ const ingredientReducer = (state = initState, action) => {
             return state;
         case 'GET_INGREDIENTS':
             console.log('Got ingredients list: ', action.ingredients.data);
-            return [...state, action.ingredients.data];
+            return [...state, ...action.ingredients.data];
         case 'GET_INGREDIENTS_ERROR':
             console.log('Error getting ingredients list: ', action.error);
             return state;
