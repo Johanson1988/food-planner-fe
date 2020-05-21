@@ -19,11 +19,9 @@ const foodReducer = (state = initState, action) => {
         case 'ADD_FOOD_ERROR':
             console.log('create food error', action.error);
             return state;
-        case 'ADD_INGREDIENT':
-            console.log('Ingredient added: ', action.ingredient);
-            const { ingredients } = state;
-            ingredients.push(action.ingredient);
-            return { ...state, ingredients };
+        case 'ADD_INGREDIENT_TO_FOOD':
+            console.log('Ingredient added to foods: ', action.selectedIngredients);
+            return { ...state, ingredients: action.selectedIngredients };
         default:
             return state;
     }

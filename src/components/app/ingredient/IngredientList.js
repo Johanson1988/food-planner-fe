@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import IngredientSummary from './IngredientSummary';
 import { connect } from 'react-redux';
 import { getIngredients } from './../../../store/actions/ingredientActions';
-import { addIngredient } from './../../../store/actions/foodActions';
+import { addIngredientToFood } from './../../../store/actions/foodActions';
 
 
 class IngredientList extends Component {
@@ -17,15 +17,15 @@ class IngredientList extends Component {
 
     handleCheckbox = e => {
         const ingredientId = e.target.value;
-        console.log(e.target)
-        console.log('ingredientId: ',ingredientId);
         const isChecked = e.target.checked;
+        console.log(ingredientId);
         isChecked ?
-            this.setState( { selectedIngredients: [...this.state.selectedIngredients, ingredientId] }, () => console.log(this.state)) :
-            this.setState( { selectedIngredients: [...this.state.selectedIngredients.filter(ingredient => ingredient !== ingredientId)] } )
+            this.setState( { selectedIngredients: [...this.state.selectedIngredients, ingredientId] }, () => this.props.addIngredientToFood(this.state.selectedIngredients)) :
+            this.setState( { selectedIngredients: [...this.state.selectedIngredients.filter(ingredient => ingredient !== ingredientId)] }, () => this.props.addIngredientToFood(this.state.selectedIngredients) );
     }
 
     render () { 
+
         const { ingredients } = this.props;
         return (
             <div className="ingredient-list section">
@@ -50,7 +50,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getIngredients: (query) => dispatch(getIngredients(query)),
-        addIngredient: (_id) => dispatch(addIngredient(_id))
+        addIngredientToFood: (selectedIngredients) => dispatch(addIngredientToFood(selectedIngredients))
     }
 }
 

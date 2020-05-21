@@ -1,6 +1,6 @@
-export const addIngredient = (_id) => {
+export const addIngredientToFood = (selectedIngredients) => {
     return {
-      type: 'ADD_INGREDIENT',
-      _id
+      type: 'ADD_INGREDIENT_TO_FOOD',
+      selectedIngredients
     }
   }
