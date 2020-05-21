@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addIngredient } from './../../../store/actions/ingredientActions';
+import { addIngredient, getIngredientById } from './../../../store/actions/ingredientActions';
 import M from 'materialize-css';
 
 class AddIngredient extends Component {
     state = {
-        name: null,
-        kcal: null,
-        fats: null,
-        saturatedFats: null,
-        carboHydrates: null,
-        sugar: null,
-        proteins: null,
-        salt: null,
-        brand: null,
-        type: null,
-        fiber: null
+        name: '',
+        kcal: '',
+        fats: '',
+        saturatedFats: '',
+        carboHydrates: '',
+        sugar: '',
+        proteins: '',
+        salt: '',
+        brand: '',
+        type: '',
+        fiber: ''
     };
 
     handleChange = e => this.setState({[e.target.name]:e.target.value});
@@ -27,9 +27,13 @@ class AddIngredient extends Component {
 
     componentDidMount() {
         M.AutoInit();
+        const _id = this.props.match.params.id;
+        console.log('did monunt', _id);
+        this.props.getIngredientById(_id);
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -37,50 +41,50 @@ class AddIngredient extends Component {
                     
                     <div className="input-field">
                         <label htmlFor='name'>Name</label>
-                        <input type='text' name='name' onChange={this.handleChange} value={this.state.name} />
+                        <input type='text' name='name' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.name : ''} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='kcal'>Kcal</label>
-                        <input type='number' name='kcal' onChange={this.handleChange} value={this.state.kcal} />
+                        <input type='number' name='kcal' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.kcal : ''} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='fats'>Fats</label>                        
-                        <input type='number' name='fats' onChange={this.handleChange} value={this.state.fats} />
+                        <input type='number' name='fats' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.fats : ''} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='saturatedFats'>Saturated Fats</label>
-                        <input type='number' name='saturatedFats' onChange={this.handleChange} value={this.state.saturatedFats } />                        
+                        <input type='number' name='saturatedFats' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.saturatedFats : ''} />                        
                     </div>
                     <div className="input-field">
                         <label htmlFor='carboHydrates'>CarboHydrates</label>
-                        <input type='number' name='carboHydrates' onChange={this.handleChange} value={this.state.carboHydrates} />                        
+                        <input type='number' name='carboHydrates' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.carboHydrates : ''} />                        
                     </div>
                     <div className="input-field">
                         <label htmlFor='sugar'>Sugar</label>
-                        <input type='number' name='sugar' onChange={this.handleChange} value={this.state.sugar} />
+                        <input type='number' name='sugar' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.sugar : ''} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='proteins'>Proteins</label>
-                        <input type='number' name='proteins' onChange={this.handleChange} value={this.state.proteins} />
+                        <input type='number' name='proteins' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.proteins : ''} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='salt'>Salt</label>
-                        <input type='number' name='salt' onChange={this.handleChange} value={this.state.salt} />
+                        <input type='number' name='salt' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.salt : ''} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='fiber'>Fiber</label>
-                        <input type='number' name='fiber' onChange={this.handleChange} value={this.state.fiber} />
+                        <input type='number' name='fiber' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.fiber : ''} />
                     </div>
 
                     <div className="input-field">
                         <label htmlFor='brand'>Brand</label>
-                        <input type='text' name='brand' onChange={this.handleChange} value={this.state.brand} />
+                        <input type='text' name='brand' onChange={this.handleChange} value={this.props.ingredient ? this.props.ingredient.brand : ''} />
                     </div>
 
                     <div className="input-field">
                         <label htmlFor="type">Type:
                     
-                            <select name="type" onChange={this.handleChange} defaultValue={this.state.type} >
+                            <select name="type" onChange={this.handleChange} defaultValue={this.props.ingredient ? this.props.ingredient.type : "default"} >
                                 <option value="default" hidden>Select an Option</option> 
                                 <option value="legumes">legumes</option>
                                 <option value="edible plants">edible plants</option>
@@ -106,10 +110,17 @@ class AddIngredient extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        addIngredient: ingredient => dispatch(addIngredient(ingredient))
+        ingredient: state.ingredient
     }
 }
 
-export default connect(null, mapDispatchToProps) (AddIngredient);
+const mapDispatchToProps = dispatch => {
+    return {
+        addIngredient: ingredient => dispatch(addIngredient(ingredient)),
+        getIngredientById: _id => dispatch(getIngredientById(_id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (AddIngredient);

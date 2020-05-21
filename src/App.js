@@ -17,7 +17,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component= { Dashboard } />
-          <Route path="/ingredient/:id" component={IngredientDetails} />
+          <Route path="/ingredient/:id" component={AddIngredient} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/add-ingredient" component={AddIngredient} />
