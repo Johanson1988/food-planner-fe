@@ -37,44 +37,44 @@ class AddIngredient extends Component {
                     
                     <div className="input-field">
                         <label htmlFor='name'>Name</label>
-                        <input type='text' name='name' onChange={this.handleChange} />
+                        <input type='text' name='name' onChange={this.handleChange} value={this.state.name} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='kcal'>Kcal</label>
-                        <input type='number' name='kcal' onChange={this.handleChange} />
+                        <input type='number' name='kcal' onChange={this.handleChange} value={this.state.kcal} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='fats'>Fats</label>                        
-                        <input type='number' name='fats' onChange={this.handleChange} />
+                        <input type='number' name='fats' onChange={this.handleChange} value={this.state.fats} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='saturatedFats'>Saturated Fats</label>
-                        <input type='number' name='saturatedFats' onChange={this.handleChange} />                        
+                        <input type='number' name='saturatedFats' onChange={this.handleChange} value={this.state.saturatedFats } />                        
                     </div>
                     <div className="input-field">
                         <label htmlFor='carboHydrates'>CarboHydrates</label>
-                        <input type='number' name='carboHydrates' onChange={this.handleChange} />                        
+                        <input type='number' name='carboHydrates' onChange={this.handleChange} value={this.state.carboHydrates} />                        
                     </div>
                     <div className="input-field">
                         <label htmlFor='sugar'>Sugar</label>
-                        <input type='number' name='sugar' onChange={this.handleChange} />
+                        <input type='number' name='sugar' onChange={this.handleChange} value={this.state.sugar} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='proteins'>Proteins</label>
-                        <input type='number' name='proteins' onChange={this.handleChange} />
+                        <input type='number' name='proteins' onChange={this.handleChange} value={this.state.proteins} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='salt'>Salt</label>
-                        <input type='number' name='salt' onChange={this.handleChange} />
+                        <input type='number' name='salt' onChange={this.handleChange} value={this.state.salt} />
                     </div>
                     <div className="input-field">
                         <label htmlFor='fiber'>Fiber</label>
-                        <input type='number' name='fiber' onChange={this.handleChange} />
+                        <input type='number' name='fiber' onChange={this.handleChange} value={this.state.fiber} />
                     </div>
 
                     <div className="input-field">
                         <label htmlFor='brand'>Brand</label>
-                        <input type='text' name='brand' onChange={this.handleChange} />
+                        <input type='text' name='brand' onChange={this.handleChange} value={this.state.brand} />
                     </div>
 
                     <div className="input-field">
@@ -96,6 +96,7 @@ class AddIngredient extends Component {
                             </select>
                         </label>
                     </div>
+
                     <div className="input-field">
                         <button className="btn waves-effect waves-light" type='submit'>Submit</button>
                     </div>
