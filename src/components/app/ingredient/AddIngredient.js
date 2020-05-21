@@ -80,7 +80,7 @@ class AddIngredient extends Component {
                     <div className="input-field">
                         <label htmlFor="type">Type:
                     
-                            <select name="type" onChange={this.handleChange} >
+                            <select name="type" onChange={this.handleChange} defaultValue={this.state.type} >
                                 <option value="default" hidden>Select an Option</option> 
                                 <option value="legumes">legumes</option>
                                 <option value="edible plants">edible plants</option>
