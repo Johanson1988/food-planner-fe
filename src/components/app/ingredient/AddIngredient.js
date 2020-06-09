@@ -5,24 +5,25 @@ import M from 'materialize-css';
 
 class AddIngredient extends Component {
     state = {
-        name: null,
-        kcal: null,
-        fats: null,
-        saturatedFats: null,
-        carboHydrates: null,
-        sugar: null,
-        proteins: null,
-        salt: null,
-        brand: null,
-        type: null,
-        fiber: null
+        name: '',
+        kcal: '',
+        fats: '',
+        saturatedFats: '',
+        carboHydrates: '',
+        sugar: '',
+        proteins: '',
+        salt: '',
+        brand: '',
+        type: '',
+        fiber: ''
     };
 
     handleChange = e => this.setState({[e.target.name]:e.target.value});
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.addIngredient(this.state)
+        this.props.addIngredient(this.state);
+        Object.keys(this.state).forEach(ingredientProperty => this.setState({[ingredientProperty]: ''}));
     }
 
     componentDidMount() {
