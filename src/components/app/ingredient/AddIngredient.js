@@ -22,7 +22,8 @@ class AddIngredient extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.addIngredient(this.state)
+        this.props.addIngredient(this.state);
+        Object.keys(this.state).forEach(ingredientProperty => this.setState({[ingredientProperty]: ''}));
     }
 
     componentDidMount() {
