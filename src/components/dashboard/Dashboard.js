@@ -32,7 +32,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('state in maptstatetoprops', state)
+    
     return {
         ingredients: state.ingredient
     }

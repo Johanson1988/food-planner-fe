@@ -18,7 +18,6 @@ class IngredientList extends Component {
     handleCheckbox = e => {
         const ingredientId = e.target.value;
         const isChecked = e.target.checked;
-        console.log(ingredientId);
         isChecked ?
             this.setState( { selectedIngredients: [...this.state.selectedIngredients, ingredientId] }, () => this.props.addIngredientToFood(this.state.selectedIngredients)) :
             this.setState( { selectedIngredients: [...this.state.selectedIngredients.filter(ingredient => ingredient !== ingredientId)] }, () => this.props.addIngredientToFood(this.state.selectedIngredients) );
