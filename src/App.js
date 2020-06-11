@@ -9,6 +9,7 @@ import SignIn from './components/auth/Signin';
 import SignUp from './components/auth/Signup';
 import AddIngredient from './components/app/ingredient/AddIngredient';
 import IngredientList from './components/app/ingredient/IngredientList';
+import AddFood from './components/app/food/AddFood';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/add-ingredient" component={AddIngredient} />
           <Route path="/ingredients" component={IngredientList} />
+          <Route path="/add-food" component={AddFood} />
         </Switch>
       </div>
     </BrowserRouter>

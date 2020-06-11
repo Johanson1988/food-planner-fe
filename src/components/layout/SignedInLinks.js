@@ -7,7 +7,7 @@ const SignedInLinks = () => {
         <ul className="right">
             <li><NavLink to ="/add-ingredient">Add Ingredient</NavLink></li>
             <li><NavLink to ="/ingredients">View Ingredients</NavLink></li>
-            <li><NavLink to ="/">Add food</NavLink></li>
+            <li><NavLink to ="/add-food">Add food</NavLink></li>
             <li><NavLink to ="/">View foods</NavLink></li>
         {
             //<li><NavLink to ="/">Add Menu</NavLink>></li>
