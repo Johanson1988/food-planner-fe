@@ -7,6 +7,8 @@ import IngredientCheckbox from './../ingredient/IngredientCheckbox';
 import { updateFoodProperty } from './../../../store/actions/foodActions';
 import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
 
+const calcPropertyByWeight = (weigth, property) => weigth * property / 100;
+
 class AddFood extends Component {
     state = {
         ingredientFilter: '',
@@ -59,6 +61,7 @@ class AddFood extends Component {
                         <thead>
                             <tr>
                                 <th>name</th>
+                                <th>weigth</th>
                                 <th>kcal</th>
                                 <th>fats</th>
                                 <th>saturated fats</th>
@@ -73,8 +76,9 @@ class AddFood extends Component {
                         <tbody>
                             {
                                 this.props.food.ingredients.map(ingredient => 
-                                <tr>
+                                <tr key={ingredient.name}>
                                     <td>{ingredient.name}</td>
+                                    <td><input type='number' onChange={this.handleChangeIngredient} value={ingredient.weigth} /></td>
                                     <td>{ingredient.kcal}</td>
                                     <td>{ingredient.fats}</td>
                                     <td>{ingredient.saturatedFats}</td>

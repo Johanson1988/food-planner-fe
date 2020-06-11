@@ -8,6 +8,7 @@ const initState = {
     sugar: 0,
     proteins: 0,
     salt: 0,
+    weight: 0,
     type: null
 };
 
