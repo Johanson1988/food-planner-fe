@@ -9,19 +9,6 @@ import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
 
 class AddFood extends Component {
     state = {
-        food: {
-            name: '',
-            kcal: '',
-            fats: '',
-            saturatedFats: '',
-            carboHydrates: '',
-            sugar: '',
-            proteins: '',
-            salt: '',
-            type: '',
-            fiber: '',
-            ingredients: [],
-        },
         ingredientFilter: '',
     };
 
@@ -67,11 +54,11 @@ class AddFood extends Component {
                 </div>
                 <h1>Visca el barça</h1>
                 {
-                    this.state.food.ingredients.length > 0 ?
+                    this.props.food.ingredients.length > 0 ?
                     <table>
                         <tbody>
                             {
-                                this.state.food.ingredients.map(ingredient => <tr><td>{ingredient}</td></tr>)
+                                this.props.food.ingredients.map(ingredient => <tr><td>{ingredient.name}</td></tr>)
                             }
                         </tbody>
                     </table> :
