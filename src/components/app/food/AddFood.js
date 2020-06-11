@@ -56,9 +56,35 @@ class AddFood extends Component {
                 {
                     this.props.food.ingredients.length > 0 ?
                     <table>
+                        <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>kcal</th>
+                                <th>fats</th>
+                                <th>saturated fats</th>
+                                <th>carbohydrates</th>
+                                <th>sugar</th>
+                                <th>proteins</th>
+                                <th>salt</th>
+                                <th>fiber</th>
+                                <th>brand</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {
-                                this.props.food.ingredients.map(ingredient => <tr><td>{ingredient.name}</td></tr>)
+                                this.props.food.ingredients.map(ingredient => 
+                                <tr>
+                                    <td>{ingredient.name}</td>
+                                    <td>{ingredient.kcal}</td>
+                                    <td>{ingredient.fats}</td>
+                                    <td>{ingredient.saturatedFats}</td>
+                                    <td>{ingredient.carboHydrates}</td>
+                                    <td>{ingredient.sugar}</td>
+                                    <td>{ingredient.proteins}</td>
+                                    <td>{ingredient.salt}</td>
+                                    <td>{ingredient.fiber}</td>
+                                    <td>{ingredient.brand}</td>
+                                </tr>)
                             }
                         </tbody>
                     </table> :
