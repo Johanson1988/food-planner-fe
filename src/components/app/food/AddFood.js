@@ -5,6 +5,7 @@ import { getIngredients } from './../../../store/actions/ingredientActions';
 import { addIngredientToFood } from './../../../store/actions/foodActions';
 import IngredientCheckbox from './../ingredient/IngredientCheckbox';
 import { updateFoodProperty } from './../../../store/actions/foodActions';
+import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
 
 class AddFood extends Component {
     state = {
@@ -41,7 +42,7 @@ class AddFood extends Component {
         const isChecked = e.target.checked;
         isChecked ?
             this.props.addIngredientToFood(ingredientId) :
-            this.props.addIngredientToFood(ingredientId);
+            this.props.deleteIngredientFromFood(ingredientId);
     }
 
     render () {
@@ -106,8 +107,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getIngredients: (query) => dispatch(getIngredients(query)),
-        addIngredientToFood: (selectedIngredients) => dispatch(addIngredientToFood(selectedIngredients)),
+        addIngredientToFood: ingredientId => dispatch(addIngredientToFood(ingredientId)),
         updateFoodProperty: property => dispatch(updateFoodProperty(property)),
+        deleteIngredientFromFood: ingredientId => dispatch(deleteIngredientFromFood(ingredientId))
     }
 }
 

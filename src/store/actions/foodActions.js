@@ -13,3 +13,10 @@ export const updateFoodProperty = foodProperty => {
     foodProperty
   }
 }
+
+export const deleteIngredientFromFood = ingredientId => {
+  return {
+    type: 'DELETE_INGREDIENT_FROM_FOOD',
+    ingredientId
+  }
+}

@@ -26,9 +26,13 @@ const foodReducer = (state = initState, action) => {
         case 'ADD_INGREDIENT_TO_FOOD_ERROR':
             console.log('Ingredient added to food error: ', action.error);
             return state;
+        case 'DELETE_INGREDIENT_FROM_FOOD':
+            console.log('Deleted ingredient from food: ', action.ingredientId);
+            const newIngredients = state.ingredients.filter(ingredient => ingredient._id !== action.ingredientId);
+            return { ...state, ingredients: newIngredients };
         case 'UPDATE_FOOD_PROPERTY':
-                console.log('Updated food property', action.foodProperty);
-                return { ...state, ...action.foodProperty };
+            console.log('Updated food property', action.foodProperty);
+            return { ...state, ...action.foodProperty };
         default:
             return state;
     }
