@@ -6,6 +6,7 @@ import { addIngredientToFood } from './../../../store/actions/foodActions';
 import IngredientCheckbox from './../ingredient/IngredientCheckbox';
 import { updateFoodProperty } from './../../../store/actions/foodActions';
 import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
+import { updateIngredientWeigth } from './../../../store/actions/foodActions';
 
 const calcPropertyByWeight = (weigth, property) => weigth * property / 100;
 
@@ -32,6 +33,12 @@ class AddFood extends Component {
         isChecked ?
             this.props.addIngredientToFood(ingredientId) :
             this.props.deleteIngredientFromFood(ingredientId);
+    }
+
+    handleChangeIngredient = e => {
+        console.log(e.currentTarget.name, e.currentTarget.value);
+
+        this.props.updateIngredientWeigth({ingredientId: e.currentTarget.name, weigth: e.currentTarget.value});
     }
 
     render () {
@@ -78,7 +85,7 @@ class AddFood extends Component {
                                 this.props.food.ingredients.map(ingredient => 
                                 <tr key={ingredient.name}>
                                     <td>{ingredient.name}</td>
-                                    <td><input type='number' onChange={this.handleChangeIngredient} value={ingredient.weigth} /></td>
+                                    <td><input type='number' name={ingredient._id} onChange={this.handleChangeIngredient} value={ingredient.weigth} /></td>
                                     <td>{ingredient.kcal}</td>
                                     <td>{ingredient.fats}</td>
                                     <td>{ingredient.saturatedFats}</td>
@@ -126,7 +133,8 @@ const mapDispatchToProps = dispatch => {
         getIngredients: (query) => dispatch(getIngredients(query)),
         addIngredientToFood: ingredientId => dispatch(addIngredientToFood(ingredientId)),
         updateFoodProperty: property => dispatch(updateFoodProperty(property)),
-        deleteIngredientFromFood: ingredientId => dispatch(deleteIngredientFromFood(ingredientId))
+        deleteIngredientFromFood: ingredientId => dispatch(deleteIngredientFromFood(ingredientId)),
+        updateIngredientWeigth: ingredient => dispatch(updateIngredientWeigth(ingredient)),
     }
 }
 

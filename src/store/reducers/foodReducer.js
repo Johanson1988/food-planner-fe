@@ -30,6 +30,10 @@ const foodReducer = (state = initState, action) => {
             return { ...state, ingredients: newIngredients };
         case 'UPDATE_FOOD_PROPERTY':
             return { ...state, ...action.foodProperty };
+        case 'UPDATE_INGREDIENT_WEIGHT':
+            console.log(action.ingredient);
+            //const ingredientToUpdate = state.ingredients.filter(ingredient => action.ingredientId === ingredient._id);
+            return state;
         default:
             return state;
     }

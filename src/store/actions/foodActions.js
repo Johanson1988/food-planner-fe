@@ -20,3 +20,10 @@ export const deleteIngredientFromFood = ingredientId => {
     ingredientId
   }
 }
+
+export const updateIngredientWeigth = ingredient => {
+  return {
+    type: 'UPDATE_INGREDIENT_WEIGHT',
+    ingredient
+  }
+}
