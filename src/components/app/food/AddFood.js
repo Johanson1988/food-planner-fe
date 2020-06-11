@@ -64,6 +64,17 @@ class AddFood extends Component {
                     </label>
                 </div>
                 <h1>Visca el barça</h1>
+                {
+                    this.state.food.ingredients.length > 0 ?
+                    <table>
+                        <tbody>
+                            {
+                                this.state.food.ingredients.map(ingredient => <tr><td>{ingredient}</td></tr>)
+                            }
+                        </tbody>
+                    </table> :
+                    null
+                }
                 <div className="ingredient-list section row">
                     <div className="input-field">
                         <label htmlFor='ingredientFilter'>Search ingredient</label>
