@@ -20,8 +20,12 @@ const foodReducer = (state = initState, action) => {
             console.log('create food error', action.error);
             return state;
         case 'ADD_INGREDIENT_TO_FOOD':
-            console.log('Ingredient added to foods: ', action.selectedIngredients);
-            return { ...state, ingredients: action.selectedIngredients };
+            console.log('Ingredient added to foods: ', action.ingredient);
+            const ingredients = [...state.ingredients, action.ingredient];
+            return { ...state, ingredients };
+        case 'ADD_INGREDIENT_TO_FOOD_ERROR':
+            console.log('Ingredient added to food error: ', action.error);
+            return state;
         case 'UPDATE_FOOD_PROPERTY':
                 console.log('Updated food property', action.foodProperty);
                 return { ...state, ...action.foodProperty };

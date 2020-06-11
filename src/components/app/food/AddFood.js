@@ -30,7 +30,6 @@ class AddFood extends Component {
 
     handleChange = e => {
         this.props.updateFoodProperty({ [e.target.name]: e.target.value });
-       // this.setState( { food: { ...this.state.food,  [e.target.name]: e.target.value } } );
     };
 
     handleFilter = e => {
@@ -41,8 +40,8 @@ class AddFood extends Component {
         const ingredientId = e.target.value;
         const isChecked = e.target.checked;
         isChecked ?
-            this.setState( { food:  { ...this.state.food, ingredients: [...this.state.food.ingredients, ingredientId] } }, () => this.props.addIngredientToFood(this.state.food.ingredients)) :
-            this.setState( {food: { ...this.state.food, ingredients: [...this.state.food.ingredients.filter(ingredient => ingredient !== ingredientId)] } }, () => this.props.addIngredientToFood(this.state.food.ingredients) );
+            this.props.addIngredientToFood(ingredientId) :
+            this.props.addIngredientToFood(ingredientId);
     }
 
     render () {
