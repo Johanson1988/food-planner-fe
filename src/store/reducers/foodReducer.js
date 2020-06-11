@@ -22,6 +22,9 @@ const foodReducer = (state = initState, action) => {
         case 'ADD_INGREDIENT_TO_FOOD':
             console.log('Ingredient added to foods: ', action.selectedIngredients);
             return { ...state, ingredients: action.selectedIngredients };
+        case 'UPDATE_FOOD_PROPERTY':
+                console.log('Updated food property', action.foodProperty);
+                return { ...state, ...action.foodProperty };
         default:
             return state;
     }

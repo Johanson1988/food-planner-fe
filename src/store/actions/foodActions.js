@@ -4,3 +4,10 @@ export const addIngredientToFood = (selectedIngredients) => {
       selectedIngredients
     }
   }
+
+export const updateFoodProperty = foodProperty => {
+  return {
+    type: 'UPDATE_FOOD_PROPERTY',
+    foodProperty
+  }
+}

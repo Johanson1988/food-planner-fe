@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import M from 'materialize-css';
 import { getIngredients } from './../../../store/actions/ingredientActions';
 import { addIngredientToFood } from './../../../store/actions/foodActions';
-import IngredientCheckbox from '../ingredient/IngredientCheckbox';
+import IngredientCheckbox from './../ingredient/IngredientCheckbox';
+import { updateFoodProperty } from './../../../store/actions/foodActions';
 
 class AddFood extends Component {
     state = {
@@ -28,7 +29,8 @@ class AddFood extends Component {
     }
 
     handleChange = e => {
-        this.setState( { food: { ...this.state.food,  [e.target.name]: e.target.value } } );
+        this.props.updateFoodProperty({ [e.target.name]: e.target.value });
+       // this.setState( { food: { ...this.state.food,  [e.target.name]: e.target.value } } );
     };
 
     handleFilter = e => {
@@ -97,14 +99,16 @@ class AddFood extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredient
+        ingredients: state.ingredient,
+        food: state.food,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         getIngredients: (query) => dispatch(getIngredients(query)),
-        addIngredientToFood: (selectedIngredients) => dispatch(addIngredientToFood(selectedIngredients))
+        addIngredientToFood: (selectedIngredients) => dispatch(addIngredientToFood(selectedIngredients)),
+        updateFoodProperty: property => dispatch(updateFoodProperty(property)),
     }
 }
 
