@@ -11,7 +11,7 @@ const initState = {
     fiber: 0,
     weight: 0,
     type: null,
-    date: null,
+    date: new Date(),
     mealType: null
 };
 

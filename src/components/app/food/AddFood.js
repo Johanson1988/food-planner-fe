@@ -77,7 +77,7 @@ class AddFood extends Component {
                             <option value="other">Other</option>
                         </select>                    
                 </div>
-                <DateTimePicker name="date" onChange={this.handleDateChange} value={new Date()} />
+                <DateTimePicker name="date" onChange={this.handleDateChange} value={this.props.food.date} />
 
                 {
                     this.props.food.ingredients.length > 0 ?
