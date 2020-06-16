@@ -19,7 +19,7 @@ const foodReducer = (state = initState, action) => {
     switch (action.type) {
         case 'ADD_FOOD':
             return state;
-            
+
         case 'ADD_FOOD_ERROR':
             console.log('create food error', action.error);
             return state;
@@ -52,8 +52,17 @@ const foodReducer = (state = initState, action) => {
            ingredientToUpdate.updatedSugar = calcPropertyByWeight(ingredientToUpdate.sugar, weigth);
            ingredientToUpdate.updatedProteins = calcPropertyByWeight(ingredientToUpdate.proteins, weigth);
            ingredientToUpdate.updatedFiber = calcPropertyByWeight(ingredientToUpdate.fiber, weigth);
-
-            return { ...state, ingredients: ingredientListToUpdate };
+           const newFoodProps = {}
+           ingredientListToUpdate.forEach(ingredient =>{
+               newFoodProps.kcal ? newFoodProps.kcal += ingredient.updatedKcal : newFoodProps.kcal = ingredient.updatedKcal;
+               newFoodProps.fats ? newFoodProps.fats += ingredient.updatedFats : newFoodProps.fats = ingredient.updatedFats;
+               newFoodProps.saturatedFats ? newFoodProps.saturatedFats += ingredient.updatedSaturadedFats : newFoodProps.saturatedFats = ingredient.updatedSaturadedFats;
+               newFoodProps.carboHydrates ? newFoodProps.carboHydrates += ingredient.updatedCarboHydrates : newFoodProps.carboHydrates = ingredient.updatedCarboHydrates;
+               newFoodProps.sugar ? newFoodProps.sugar += ingredient.updatedSugar : newFoodProps.sugar = ingredient.updatedSugar;
+               newFoodProps.proteins ? newFoodProps.proteins += ingredient.updatedProteins : newFoodProps.proteins = ingredient.updatedProteins;
+               newFoodProps.fiber ? newFoodProps.fiber += ingredient.updatedFiber : newFoodProps.fiber = ingredient.updatedFiber;
+           })
+           return { ...state, ingredients: ingredientListToUpdate, ...newFoodProps };
         default:
             return state;
     }
