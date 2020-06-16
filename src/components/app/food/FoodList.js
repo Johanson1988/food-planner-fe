@@ -9,7 +9,7 @@ const FoodList = props => {
         // eslint-disable-next-line  
     }, []);
    
-
+    console.log(props);
     return (
         <table>
             <thead>
@@ -29,10 +29,20 @@ const FoodList = props => {
             </thead>
             <tbody>
                 {
-                    props.foodList.map((food, index) => <FoodSummary key={index} food={food} />)
+                    props.foodList.foodList ? props.foodList.foodList.map((food, index) => <FoodSummary key={index} food={food} />) : null
                 }
                 <tr>
-
+                    <th>TOTAL</th>
+                    <th>{props.foodList.kcal}</th>
+                    <th>{props.foodList.fats}</th>
+                    <th>{props.foodList.saturatedFats}</th>
+                    <th>{props.foodList.carboHydrates}</th>
+                    <th>{props.foodList.sugar}</th>
+                    <th>{props.foodList.proteins}</th>
+                    <th>{props.foodList.salt}</th>
+                    <th>{props.foodList.fiber}</th>
+                    <th>{props.foodList.date}</th>
+                    <th>{props.foodList.mealType}</th>
                 </tr>
             </tbody>
         </table>
@@ -41,7 +51,7 @@ const FoodList = props => {
 
 const mapStateToProps = state => {
     return {
-        foodList: state.foodList.foodList,
+        foodList: state.foodList,
     }
 }
 
