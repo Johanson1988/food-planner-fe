@@ -8,8 +8,6 @@ import { updateFoodProperty } from './../../../store/actions/foodActions';
 import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
 import { updateIngredientWeigth } from './../../../store/actions/foodActions';
 
-const calcPropertyByWeight = (weigth, property) => weigth * property / 100;
-
 class AddFood extends Component {
     state = {
         ingredientFilter: '',
@@ -35,11 +33,8 @@ class AddFood extends Component {
             this.props.deleteIngredientFromFood(ingredientId);
     }
 
-    handleChangeIngredient = e => {
-        console.log(e.currentTarget.name, e.currentTarget.value);
-
-        this.props.updateIngredientWeigth({ingredientId: e.currentTarget.name, weigth: e.currentTarget.value});
-    }
+    handleChangeIngredient = e => this.props.updateIngredientWeigth({ingredientId: e.currentTarget.name, weigth: e.currentTarget.value});
+    
 
     render () {
         const { ingredients } = this.props;
@@ -86,14 +81,14 @@ class AddFood extends Component {
                                 <tr key={ingredient.name}>
                                     <td>{ingredient.name}</td>
                                     <td><input type='number' name={ingredient._id} onChange={this.handleChangeIngredient} value={ingredient.weigth} /></td>
-                                    <td>{ingredient.kcal}</td>
-                                    <td>{ingredient.fats}</td>
-                                    <td>{ingredient.saturatedFats}</td>
-                                    <td>{ingredient.carboHydrates}</td>
-                                    <td>{ingredient.sugar}</td>
-                                    <td>{ingredient.proteins}</td>
-                                    <td>{ingredient.salt}</td>
-                                    <td>{ingredient.fiber}</td>
+                                    <td>{ingredient.updatedKcal}</td>
+                                    <td>{ingredient.updatedFats}</td>
+                                    <td>{ingredient.updatedSaturatedFats}</td>
+                                    <td>{ingredient.updatedCarboHydrates}</td>
+                                    <td>{ingredient.updatedSugar}</td>
+                                    <td>{ingredient.updatedProteins}</td>
+                                    <td>{ingredient.updatedSalt}</td>
+                                    <td>{ingredient.updatedFiber}</td>
                                     <td>{ingredient.brand}</td>
                                 </tr>)
                             }

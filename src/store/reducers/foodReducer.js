@@ -9,8 +9,10 @@ const initState = {
     proteins: 0,
     salt: 0,
     weight: 0,
-    type: null
+    type: null,
 };
+
+const calcPropertyByWeight = (weigth=0, property) => weigth * property / 100;
 
 const foodReducer = (state = initState, action) => {
     switch (action.type) {
@@ -21,7 +23,7 @@ const foodReducer = (state = initState, action) => {
             return state;
         case 'ADD_INGREDIENT_TO_FOOD':
             const ingredients = [...state.ingredients, action.ingredient];
-            return { ...state, ingredients };
+            return { ...state, ingredients: ingredients };
         case 'ADD_INGREDIENT_TO_FOOD_ERROR':
             console.log('Ingredient added to food error: ', action.error);
             return state;
@@ -31,8 +33,16 @@ const foodReducer = (state = initState, action) => {
         case 'UPDATE_FOOD_PROPERTY':
             return { ...state, ...action.foodProperty };
         case 'UPDATE_INGREDIENT_WEIGHT':
-            console.log(action.ingredient);
-            //const ingredientToUpdate = state.ingredients.filter(ingredient => action.ingredientId === ingredient._id);
+           console.log('Update ingredient weigth', action.ingredient);
+           const { ingredientId, weigth } = action.ingredient;
+           const ingredientListToUpdate = [...state.ingredients];
+           const index = ingredientListToUpdate.findIndex(ingredient => ingredientId === ingredient._id);
+           //const ingredientToUpdate = ingredientListToUpdate.splice(index, 1)[0];
+           const ingredientToUpdate = ingredientListToUpdate[index];
+           ingredientToUpdate.updatedKcal = calcPropertyByWeight(ingredientToUpdate.kcal, weigth);
+           
+           console.log(ingredientListToUpdate);
+
             return state;
         default:
             return state;
