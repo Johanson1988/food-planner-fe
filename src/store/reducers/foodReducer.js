@@ -8,6 +8,7 @@ const initState = {
     sugar: 0,
     proteins: 0,
     salt: 0,
+    fiber: 0,
     weight: 0,
     type: null,
 };
@@ -36,14 +37,19 @@ const foodReducer = (state = initState, action) => {
            console.log('Update ingredient weigth', action.ingredient);
            const { ingredientId, weigth } = action.ingredient;
            const ingredientListToUpdate = [...state.ingredients];
-           const index = ingredientListToUpdate.findIndex(ingredient => ingredientId === ingredient._id);
-           //const ingredientToUpdate = ingredientListToUpdate.splice(index, 1)[0];
+           const index = ingredientListToUpdate.findIndex(ingredient => ingredientId === ingredient._id);           
            const ingredientToUpdate = ingredientListToUpdate[index];
            ingredientToUpdate.updatedKcal = calcPropertyByWeight(ingredientToUpdate.kcal, weigth);
+           ingredientToUpdate.updatedFats = calcPropertyByWeight(ingredientToUpdate.fats, weigth);
+           ingredientToUpdate.updatedSaturadedFats = calcPropertyByWeight(ingredientToUpdate.saturadedFats, weigth);
+           ingredientToUpdate.updatedCarboHydrates = calcPropertyByWeight(ingredientToUpdate.carboHydrates, weigth);
+           ingredientToUpdate.updatedSugar = calcPropertyByWeight(ingredientToUpdate.sugar, weigth);
+           ingredientToUpdate.updatedProteins = calcPropertyByWeight(ingredientToUpdate.proteins, weigth);
+           ingredientToUpdate.updatedFiber = calcPropertyByWeight(ingredientToUpdate.fiber, weigth);
            
            console.log(ingredientListToUpdate);
 
-            return state;
+            return { ...state, ingredients: ingredientListToUpdate };
         default:
             return state;
     }
