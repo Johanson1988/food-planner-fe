@@ -31,6 +31,9 @@ const FoodList = props => {
                 {
                     props.foodList.map((food, index) => <FoodSummary key={index} food={food} />)
                 }
+                <tr>
+
+                </tr>
             </tbody>
         </table>
     )
@@ -38,7 +41,7 @@ const FoodList = props => {
 
 const mapStateToProps = state => {
     return {
-        foodList: state.foodList,
+        foodList: state.foodList.foodList,
     }
 }
 
