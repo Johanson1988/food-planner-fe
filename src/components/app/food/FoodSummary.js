@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FoodSummary = (props) => {
-    console.log(props.food.name);
     const { name, kcal, fats, saturatedFats, carboHydrates, sugar, proteins, salt, fiber, date, mealType } = props.food;
     return (
         <tr>

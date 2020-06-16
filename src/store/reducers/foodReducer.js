@@ -50,7 +50,7 @@ const foodReducer = (state = initState, action) => {
 
            ingredientToUpdate.updatedKcal = calcPropertyByWeight(ingredientToUpdate.kcal, weigth);
            ingredientToUpdate.updatedFats = calcPropertyByWeight(ingredientToUpdate.fats, weigth);
-           ingredientToUpdate.updatedSaturadedFats = calcPropertyByWeight(ingredientToUpdate.saturadedFats, weigth);
+           ingredientToUpdate.updatedSaturadedFats = calcPropertyByWeight(ingredientToUpdate.saturatedFats, weigth);
            ingredientToUpdate.updatedCarboHydrates = calcPropertyByWeight(ingredientToUpdate.carboHydrates, weigth);
            ingredientToUpdate.updatedSugar = calcPropertyByWeight(ingredientToUpdate.sugar, weigth);
            ingredientToUpdate.updatedProteins = calcPropertyByWeight(ingredientToUpdate.proteins, weigth);

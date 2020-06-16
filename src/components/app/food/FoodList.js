@@ -17,7 +17,7 @@ const FoodList = props => {
                     <th>name</th>
                     <th>kcal</th>
                     <th>fats</th>
-                    <th>saturaded fats</th>
+                    <th>saturated fats</th>
                     <th>carbohydrates</th>
                     <th>sugar</th>
                     <th>proteins</th>
