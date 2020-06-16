@@ -92,6 +92,19 @@ class AddFood extends Component {
                                     <td>{ingredient.brand}</td>
                                 </tr>)
                             }
+                            <tr>
+                                <td>TOTALS</td>
+                                <td>-</td>
+                                <td>{this.props.food.kcal}</td>
+                                <td>{this.props.food.fats}</td>
+                                <td>{this.props.foodsaturatedFats}</td>
+                                <td>{this.props.food.carboHydrates}</td>
+                                <td>{this.props.food.sugar}</td>
+                                <td>{this.props.food.proteins}</td>
+                                <td>{this.props.food.salt}</td>
+                                <td>{this.props.food.fiber}</td>
+                                <td>-</td>
+                            </tr>
                         </tbody>
                     </table> :
                     null
