@@ -1,9 +1,11 @@
 import React from 'react';
 
-const FoodSummary = props => {
+const FoodSummary = (props) => {
+    console.log(props.food.name);
+    const {name} = props.food;
     return (
         <tr>
-            <td>{props.name}</td>
+            <td>{name}</td>
         </tr>
     )
 }
