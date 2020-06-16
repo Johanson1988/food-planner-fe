@@ -52,17 +52,30 @@ class AddFood extends Component {
                     <label htmlFor='name'>Name</label>
                     <input type='text' name='name' onChange={this.handleChange} value={this.state.name} />
                 </div>
+                   
                 <div className="input-field">
-                    <label htmlFor="type">Type:
-                        <select name="type" onChange={this.handleChange} defaultValue={this.state.type} >
+                        <select name="type" onChange={this.handleChange} >
                             <option value="default" hidden>Select an Option</option> 
                             <option value="vegan">Vegan</option>
                             <option value="meat">Meat</option>
                             <option value="fish">Fish</option>
                         </select>
-                    </label>
+                    
                 </div>
-                <h1>Visca el barça</h1>
+                   
+                <div className="input-field">
+                        <select name="mealType" onChange={this.handleChange} >
+                            <option value="default" hidden>Select an Option</option> 
+                            <option value="breakfast">Breakfast</option>
+                            <option value="morning-snack">Morning snack</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="afternoon-snack">Afternoon snack</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="other">Other</option>
+                        </select>
+                    
+                </div>
+
                 {
                     this.props.food.ingredients.length > 0 ?
                     <table>

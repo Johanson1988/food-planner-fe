@@ -11,6 +11,8 @@ const initState = {
     fiber: 0,
     weight: 0,
     type: null,
+    date: null,
+    mealType: null
 };
 
 const calcPropertyByWeight = (weigth=0, property) => weigth * property / 100;
