@@ -8,6 +8,7 @@ import { updateFoodProperty } from './../../../store/actions/foodActions';
 import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
 import { updateIngredientWeigth } from './../../../store/actions/foodActions';
 import { addFood } from './../../../store/actions/foodActions';
+import DateTimePicker from 'react-datetime-picker';
 
 class AddFood extends Component {
     state = {
@@ -21,6 +22,8 @@ class AddFood extends Component {
     handleChange = e => {
         this.props.updateFoodProperty({ [e.target.name]: e.target.value });
     };
+
+    handleDateChange = date => this.props.updateFoodProperty({ date });
 
     handleFilter = e => {
         this.setState({ [e.target.name]: e.target.value } , () => this.props.getIngredients(`name=${this.state.ingredientFilter}`));
@@ -72,9 +75,9 @@ class AddFood extends Component {
                             <option value="afternoon-snack">Afternoon snack</option>
                             <option value="dinner">Dinner</option>
                             <option value="other">Other</option>
-                        </select>
-                    
+                        </select>                    
                 </div>
+                <DateTimePicker name="date" onChange={this.handleDateChange} value={new Date()} />
 
                 {
                     this.props.food.ingredients.length > 0 ?
