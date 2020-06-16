@@ -18,6 +18,7 @@ const calcPropertyByWeight = (weigth=0, property) => weigth * property / 100;
 const foodReducer = (state = initState, action) => {
     switch (action.type) {
         case 'ADD_FOOD':
+            console.log('Food added to DDBB');
             return state;
 
         case 'ADD_FOOD_ERROR':

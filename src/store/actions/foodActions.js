@@ -7,6 +7,12 @@ export const addIngredientToFood = (ingredientId) => (dispatch, getState) => {
 
   }
 
+export const addFood = food => (dispatch, getState) => {
+    axios.post('http://localhost:5000/food', food)
+        .then(() => dispatch({ type: 'ADD_FOOD', food }))
+        .catch(error => dispatch({ type: 'ADD_FOOD_ERROR', error }));
+}
+
 export const updateFoodProperty = foodProperty => {
   return {
     type: 'UPDATE_FOOD_PROPERTY',

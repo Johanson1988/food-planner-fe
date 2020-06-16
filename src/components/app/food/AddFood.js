@@ -7,6 +7,7 @@ import IngredientCheckbox from './../ingredient/IngredientCheckbox';
 import { updateFoodProperty } from './../../../store/actions/foodActions';
 import { deleteIngredientFromFood } from './../../../store/actions/foodActions';
 import { updateIngredientWeigth } from './../../../store/actions/foodActions';
+import { addFood } from './../../../store/actions/foodActions';
 
 class AddFood extends Component {
     state = {
@@ -24,6 +25,11 @@ class AddFood extends Component {
     handleFilter = e => {
         this.setState({ [e.target.name]: e.target.value } , () => this.props.getIngredients(`name=${this.state.ingredientFilter}`));
     };
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.addFood(this.props.food);
+        //Object.keys(this.state).forEach(ingredientProperty => this.setState({[ingredientProperty]: ''}));
+    }
 
     handleCheckbox = e => {
         const ingredientId = e.target.value;
@@ -40,7 +46,7 @@ class AddFood extends Component {
         const { ingredients } = this.props;
         return (
             <div className="container">
-                <form className="white">
+                <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Add New Food</h5>
                 <div className="input-field">
                     <label htmlFor='name'>Name</label>
@@ -143,6 +149,7 @@ const mapDispatchToProps = dispatch => {
         updateFoodProperty: property => dispatch(updateFoodProperty(property)),
         deleteIngredientFromFood: ingredientId => dispatch(deleteIngredientFromFood(ingredientId)),
         updateIngredientWeigth: ingredient => dispatch(updateIngredientWeigth(ingredient)),
+        addFood: food => dispatch(addFood(food)),
     }
 }
 
