@@ -10,6 +10,7 @@ import SignUp from './components/auth/Signup';
 import AddIngredient from './components/app/ingredient/AddIngredient';
 import IngredientList from './components/app/ingredient/IngredientList';
 import AddFood from './components/app/food/AddFood';
+import FoodList from './components/app/food/FoodList';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/add-ingredient" component={AddIngredient} />
           <Route path="/ingredients" component={IngredientList} />
           <Route path="/add-food" component={AddFood} />
+          <Route path="/view-foods" component={FoodList} />
         </Switch>
       </div>
     </BrowserRouter>
