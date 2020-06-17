@@ -1,16 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getFoodList } from './../../../store/actions/foodListAction';
 import FoodSummary from './FoodSummary';
+import DateTimePicker from 'react-datetime-picker';
 
 const FoodList = props => {
     useEffect(() => {    // Update the document title using the browser API
         props.getFoodList();
         // eslint-disable-next-line  
     }, []);
-   
-    console.log(props);
+    
+    const [date, setDate] = useState(new Date("2020-06-17T12:14:52.569Z"));
+
     return (
+    
+    <div className="container">
+
+
+        <div className="input-field">
+            <label>Start date:</label>
+            <DateTimePicker name="start-date" onChange={date=>setDate(date)} value={date} />
+        </div>
+        
         <table>
             <thead>
                 <tr>
@@ -46,6 +57,7 @@ const FoodList = props => {
                 </tr>
             </tbody>
         </table>
+    </div>
     )
 }
 
