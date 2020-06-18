@@ -5,12 +5,20 @@ import FoodSummary from './FoodSummary';
 import DateTimePicker from 'react-datetime-picker';
 
 const FoodList = props => {
-    useEffect(() => {    // Update the document title using the browser API
-        props.getFoodList();
+    const [startDate, setStartDate] = useState(new Date(new Date().setHours(0,0,0,0)));
+    const [endDate, setEndDate] = useState(new Date());
+    
+    useEffect(() => {   
+        props.getFoodList(startDate, endDate);
         // eslint-disable-next-line  
     }, []);
     
-    const [date, setDate] = useState(new Date("2020-06-17T12:14:52.569Z"));
+    const handleDate = (startDate, endDate) => {
+        console.log(startDate);
+        setStartDate(startDate);
+        setEndDate(endDate);
+        props.getFoodList(startDate, endDate);
+    }
 
     return (
     
@@ -19,7 +27,12 @@ const FoodList = props => {
 
         <div className="input-field">
             <label>Start date:</label>
-            <DateTimePicker name="start-date" onChange={date=>setDate(date)} value={date} />
+            <DateTimePicker name="start-date" onChange={startDate=>handleDate(startDate, endDate)} value={startDate} />
+        </div>
+
+        <div className="input-field">
+            <label>End date:</label>
+            <DateTimePicker name="end-date" onChange={endDate=>handleDate(startDate, endDate)} value={endDate} />
         </div>
         
         <table>
@@ -69,7 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getFoodList: () => dispatch(getFoodList()),
+        getFoodList: (startDate, endDate) => dispatch(getFoodList(startDate, endDate)),
     }
 }
 
