@@ -13,9 +13,21 @@ const initState = {
 const foodReducer = (state = initState, action) => {
     switch(action.type) {
         case 'GET_FOOD_LIST':
-            const foodProperties = {...state};
-            delete foodProperties.foodList;
+            console.log(initState);
+            const foodProperties = {
+                kcal: 0,
+                fats: 0,
+                saturatedFats: 0,
+                carboHydrates: 0,
+                sugar: 0,
+                proteins: 0,
+                salt: 0,
+                fiber: 0,
+            };
+            //delete foodProperties.foodList;
+            console.log(foodProperties);
             action.foodList.data.forEach(food => {
+                console.log("hola", food.name);
                 if (food.kcal > 0) foodProperties.kcal += food.kcal;
                 if (food.fats > 0) foodProperties.fats += food.fats;
                 if (food.saturatedFats > 0) foodProperties.saturatedFats += food.saturatedFats;
