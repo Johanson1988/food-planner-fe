@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getFoodList } from './../../../store/actions/foodListAction';
 import FoodSummary from './FoodSummary';
 import DateTimePicker from 'react-datetime-picker';
+import styled from 'styled-components';
 
 const FoodList = props => {
     const [startDate, setStartDate] = useState(new Date(new Date().setHours(0,0,0,0)));
@@ -20,11 +21,17 @@ const FoodList = props => {
         props.getFoodList(startDate, endDate);
     }
 
+    const Title = styled.h1`
+        font-size: 1.5em;
+        text-align: center;
+        color: palevioletred;
+    `;
+
     return (
     
     <div className="container">
 
-
+        <Title>Food List</Title>
         <div className="input-field">
             <label>Start date:</label>
             <DateTimePicker name="start-date" onChange={startDate=>handleDate(startDate, endDate)} value={startDate} />
